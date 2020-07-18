@@ -1,0 +1,103 @@
+<html>
+
+<title>Depression Detector</title>
+
+<head>
+    <style>
+    body {
+    background-image: url(/static/wp6690890.jpg);
+    }
+    .split {
+        font-style: italic;
+        font-family: cursive;
+        font-size: large;
+        height: 100%;
+        width: 1000px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        overflow-x: hidden;
+       padding-top: 20px;
+    }
+    .left {
+       left: 10;
+      }
+    .right {
+    font-size: xx-large;
+    color: #FFFFFF;
+    right: 0;
+      }
+    .centered {
+     position: relative;
+     top: 45%;
+     left: 66%;
+     transform: translate(-50%, -50%);
+     text-align: center;
+      }
+    div.main1{
+        text-align: left;
+        color: #FFFFFF;
+    }
+    div.main2{
+        color: #FFFFFF;
+        font-weight: bolder;
+        background-color: transparent;
+        opacity: 0.5;
+    }
+    div.main3{
+        text-align: right;
+    }
+    .button1 {
+        border-radius: 12px;
+        background-color: #41a3bbc4;
+        border: none;
+        color: #FFFFFF;
+        text-align: center;
+        font-size: 28px;
+        padding: 20px;
+        width: 300px;
+        transition: all 0.5s;
+        cursor: pointer;
+        margin: 5px;
+    }
+    .button:hover {background-color: #3e8e41}
+    .button:active {
+         background-color: #3e8e41;
+        box-shadow: 0 5px #666;
+         transform: translateY(4px);
+         }
+    </style>
+</head>
+
+<body>
+
+<div class='split left'>
+    <div class='main1'>
+        <p style="font-size: 24px;">What's your tweet??</p>
+    </div>
+     <div class='main2'>        
+        <form action="{{ url_for('index')}}" method="post"> 
+        <input name='data' style="height: 500px; width: 900px; font-size: 24px;" placeholder="Your tweet here..."/ >
+        <br>
+        <br>
+        </form>
+    </div>
+    <div class='main3'>
+        <button class='button1'><span>Check tweet</span></button>
+    </div>
+</div>
+
+<div class="split right">
+  <div class='centered'>
+    {% if predictionn == 4 %}
+        <img src="{{url_for('static', filename='happy1.png')}}" style="width: 762px; height: 700px;">
+    {% elif predictionn == 0 %}
+        <img src="{{url_for('static', filename='depressed1.png')}}" style="width: 762px; height: 700px;">
+    {% endif %}
+  </div>
+</div>
+
+
+</body>
+
+</html>
